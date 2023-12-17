@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Гармонія Хвиль</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      background: url('background-image.jpg') no-repeat center center fixed;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+    }
+
+    .content {
+      position: absolute;
+      top: 20px;
+      left: 0;
+      width: 100%;
+      height: calc(100% - 40px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: start;
+      z-index: 1;
+      color: white;
+      padding: 10px;
+    }
+
+    .station-section {
+      margin-bottom: 20px;
+    }
+
+    .station-title {
+      font-size: 1.8em;
+      margin-bottom: 10px;
+      text-align: center;
+      animation: fadeInTitle 2s ease-in-out;
+    }
+
+    .player {
+      max-width: 400px;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+
+    .widget-container {
+      background: rgba(0, 0, 0, 0.7);
+      border-radius: 10px;
+      padding: 10px;
+      text-align: center;
+      max-width: 400px;
+      width: 100%;
+      animation: fadeInWidget 2s ease-in-out;
+    }
+
+    @media screen and (max-width: 768px) {
+      .station-title {
+        font-size: 1.5em;
+      }
+    }
+
+    @keyframes fadeInTitle {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInWidget {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="content">
+    <!-- Хвиля Перемоги Section -->
+    <div class="station-section">
+      <div class="station-title">Хвиля Перемоги</div>
+      <iframe id="hvylia-player" class="player" src="https://cdn2.cloudrad.io/RadioZipsuvanaHvilya/live/p1-popup.html"></iframe>
+      <div class="widget-container">
+        <script language="javascript" type="text/javascript" src="https://cdn2.cloudrad.io/RadioZipsuvanaHvilya/live/streaminfo.js"></script>
+        <span id="stream_info_song">Завантаження...</span><br />
+      </div>
+    </div>
+
+    <!-- PulseRock Section -->
+    <div class="station-section">
+      <div class="station-title">PulseRock</div>
+      <iframe id="pulserock-player" class="player" src="https://cdn2.cloudrad.io/PulseRockRadio/live/p1-popup.html"></iframe>
+      <div class="widget-container">
+        <script language="javascript" type="text/javascript" src="https://cdn2.cloudrad.io/PulseRockRadio/live/streaminfo.js"></script>
+        <span id="stream_info_song">Завантаження...</span><br />
+      </div>
+    </div>
+  </div>
+
+  <script>
+    var hvyliaPlayer = document.getElementById('hvylia-player');
+    var pulserockPlayer = document.getElementById('pulserock-player');
+
+    hvyliaPlayer.addEventListener('play', function() {
+      pulserockPlayer.pause();
+    });
+
+    pulserockPlayer.addEventListener('play', function() {
+      hvyliaPlayer.pause();
+    });
+  </script>
+</body>
+</html>
