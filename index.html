@@ -21,8 +21,8 @@
       position: absolute;
       top: 20px;
       left: 0;
-      width: 100%;
-      height: calc(100% - 40px);
+      right: 0; /* Додано для кращої адаптивності */
+      bottom: 20px; /* Додано для кращої адаптивності */
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -30,50 +30,35 @@
       z-index: 1;
       color: white;
       padding: 10px;
-    }
-
-    .station-section {
-      margin-bottom: 20px;
+      overflow: auto; /* Дозволяє скролінг всередині контенту */
     }
 
     .station-title {
       font-size: 1.8em;
       margin-bottom: 10px;
       text-align: center;
-      animation: fadeInTitle 2s ease-in-out;
+      animation: colorChange 10s infinite; /* Анімація назв радіостанцій */
     }
 
-    .player {
-      max-width: 400px;
-      width: 100%;
-      margin-bottom: 10px;
+    /* Анімація зміни кольору */
+    @keyframes colorChange {
+      0% { color: #ff2d55; }
+      50% { color: #ffffff; }
+      100% { color: #4cd964; }
     }
 
-    .widget-container {
-      background: rgba(0, 0, 0, 0.7);
-      border-radius: 10px;
-      padding: 10px;
-      text-align: center;
-      max-width: 400px;
-      width: 100%;
-      animation: fadeInWidget 2s ease-in-out;
-    }
-
+    /* Медіа-запити для мобільних пристроїв */
     @media screen and (max-width: 768px) {
       .station-title {
-        font-size: 1.5em;
+        font-size: 1.5em; /* Зменшення розміру шрифту для мобільних */
+      }
+      .player {
+        width: 90%; /* Зменшення ширини плеєра для мобільних */
       }
     }
 
-    @keyframes fadeInTitle {
-      from { opacity: 0; transform: translateY(-10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+    /* Інші стилі... */
 
-    @keyframes fadeInWidget {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
   </style>
 </head>
 <body>
@@ -82,16 +67,13 @@
     <div class="station-section">
       <div class="station-title">Хвиля Перемоги</div>
       <iframe id="hvylia-player" class="player" src="https://cdn2.cloudrad.io/hvilyaperemogi/dzgtbmoedabuv/p1-popup.html"></iframe>
-</head>
+    </div>
 
-</head>
-<body>
-<!-- PulseRock Section -->
-<div class="station-section">
-  <div class="station-title">PulseRock</div>
-  <iframe id="pulserock-player" class="player" src="https://cdn2.cloudrad.io/pulserock/sowvppvyth6uv/p1-popup.html"></iframe>
-</head>
-
-  </script>
+    <!-- PulseRock Section -->
+    <div class="station-section">
+      <div class="station-title">PulseRock</div>
+      <iframe id="pulserock-player" class="player" src="https://cdn2.cloudrad.io/pulserock/sowvppvyth6uv/p1-popup.html"></iframe>
+    </div>
+  </div>
 </body>
 </html>
